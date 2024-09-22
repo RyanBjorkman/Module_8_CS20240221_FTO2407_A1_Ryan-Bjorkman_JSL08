@@ -1,8 +1,41 @@
 // This one will be a little tricky. So check out this overview first: https://www.youtube.com/watch?v=sJ-c3BA-Ypo
 
 // 1. Create a variable to store the singleton instance of the bank branch. "bankBranchInstance"
-
+let bankBranchInstance = null
 // 2. Define a class called `BankBranch` for managing branch information.
+class BankBranch {
+  // 3. Create a constructor that takes `branchInfo` as a parameter.
+  constructor(branchInfo) {
+    // 4. Inside the constructor, check if the `bankBranchInstance` variable is null (indicating no instance exists).
+    if (bankBranchInstance === null) {
+      // 5. If `bankBranchInstance` is null, create a new instance with the provided `branchInfo` and assign it to `bankBranchInstance`.
+      bankBranchInstance = this
+      this.branchInfo = branchInfo
+    }
+    // 6. Return the `bankBranchInstance` whether it's newly created or existing.
+    return bankBranchInstance
+  }
+
+  // 7. Add methods to the `BankBranch` class for managing branch-related information.
+  getBranchInfo() {
+    return this.branchInfo
+  }
+}
+
+// 8. Create instances of the `BankBranch` class, such as `branchA` and `branchB`, with different branch information.
+const branchA = new BankBranch('Branch A Info')
+const branchB = new BankBranch('Branch B Info')
+
+// 9. Use the `getBranchInfo` method to retrieve branch information from the instances.
+console.log(branchA.getBranchInfo()) // Output: Branch A Info
+console.log(branchB.getBranchInfo()) // Output: Branch A Info
+
+// 10. Verify that `branchA` and `branchB` are both referring to the same instance by comparing them using `===`.
+console.log(branchA === branchB) // Output: true
+
+// 11. Export the `BankBranch` class to make it accessible in other files.
+module.exports = BankBranch
+
 
 // 3. In the `BankBranch` class:
 //    - Create a constructor that takes `branchInfo` as a parameter.
